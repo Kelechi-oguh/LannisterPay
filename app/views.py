@@ -1,12 +1,26 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 
 from .models import Transaction, SplitInfo, TransactionResponse, SplitBreakdown
 from .serializer import TransactionSerializer, SplitInfoSerializer, TransactionResponseSerializer
 
 # Create your views here.
 
+
+class HomeView(APIView):
+    def get(self, request, *args, **kwargs):
+        data = {
+            "Description": {"message": "lANNISTER_PAY  A Flutterwave assigned task to create a transaction payment splitting service (TPSS)."},
+
+            "Urls": {
+                "home": reverse('home_view', request=request),
+                "transaction_page": reverse('transaction_view', request=request)}
+            }
+
+        return Response(data)
+    
 
 
 class TransactionView(APIView):
@@ -22,6 +36,7 @@ class TransactionView(APIView):
         obj = TransactionResponse.objects.all()
         serializer = TransactionResponseSerializer(obj, many=True)
         return Response(serializer.data)
+
     
 
 

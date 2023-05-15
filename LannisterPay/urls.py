@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import TransactionView
+from app.views import TransactionView, HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('obj/', TransactionView.as_view(), name="transaction_view")
+    path('', HomeView.as_view(), name="home_view"),
+    path('obj/', TransactionView.as_view(), name="transaction_view"),
+
 ]
