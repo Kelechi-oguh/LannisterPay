@@ -12,11 +12,13 @@ from .serializer import TransactionSerializer, SplitInfoSerializer, TransactionR
 class HomeView(APIView):
     def get(self, request, *args, **kwargs):
         data = {
-            "Description": {"message": "lANNISTER_PAY  A Flutterwave assigned task to create a transaction payment splitting service (TPSS)."},
+            "Description": {"message": "lANNISTER_PAY - A Flutterwave assigned task to create a transaction payment splitting service (TPSS).",
+                            "note":"Check out the link to the task for complete understanding",
+                            "link": "https://flutterwave.stoplight.io/docs/2022-tech-heroes/51d6f08ecdada-lannister-pay-tpss"},
 
             "Urls": {
                 "home": reverse('home_view', request=request),
-                "transaction_page": reverse('transaction_view', request=request)}
+                "transaction_page": reverse('transaction_view', request=request) + " - accepts a post request and returns the balance of the transaction based on the rules of the task"}
             }
 
         return Response(data)
