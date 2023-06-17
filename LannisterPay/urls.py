@@ -20,6 +20,6 @@ from app.views import TransactionView, HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name="home_view"),
-    path('obj/', TransactionView.as_view(), name="transaction_view"),
+    path('split-payments/compute', TransactionView.as_view(), name="transaction_view"),
 
 ]

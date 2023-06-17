@@ -12,14 +12,43 @@ from .serializer import TransactionSerializer, SplitInfoSerializer, TransactionR
 class HomeView(APIView):
     def get(self, request, *args, **kwargs):
         data = {
-            "Description": {"message": "lANNISTER_PAY - A Flutterwave assigned task to create a transaction payment splitting service (TPSS).",
-                            "note":"Check out the link to the task for complete understanding",
-                            "link": "https://flutterwave.stoplight.io/docs/2022-tech-heroes/51d6f08ecdada-lannister-pay-tpss"},
-
-            "Urls": {
+            "urls": {
                 "home": reverse('home_view', request=request),
-                "transaction_page": reverse('transaction_view', request=request) + " - accepts a post request and returns the balance of the transaction based on the rules of the task"}
+                "transaction_page": reverse('transaction_view', request=request) + " - accepts a post request of a transaction and returns the balance of the transaction based on the rules of the task"
+            },
+            "message": {
+                "description": "lANNISTER PAY (TPSS) -  This is a Transaction Payment Spliting Service that calculates the amount due to one or more split payment 'entities' as well as the balance after all splits have been computed.",
+                "note": "Check out the link to the task for complete understanding",
+                "link": "https://flutterwave.stoplight.io/docs/2022-tech-heroes/51d6f08ecdada-lannister-pay-tpss"
+            },
+            "example":{
+                "sample_transaction": {
+                        "ID": 1308,
+                        "Amount": 12580,
+                        "Currency": "NGN",
+                        "CustomerEmail": "anon8@customers.io",
+                        "SplitInfo": [
+                            {
+                                "SplitType": "FLAT",
+                                "SplitValue": 45,
+                                "SplitEntityId": "LNPYACC0019"
+                            },
+                            {
+                                "SplitType": "RATIO",
+                                "SplitValue": 3,
+                                "SplitEntityId": "LNPYACC0011"
+                            },
+                            {
+                                "SplitType": "PERCENTAGE",
+                                "SplitValue": 3,
+                                "SplitEntityId": "LNPYACC0015"
+                            }
+                        ]
+                    },
+                "note": "Don't copy beyond the closing '}' above to use sample_transaction as post data. Change the ID values (including all SplitEntityId) for multiple attempts",
+                    
             }
+        }
 
         return Response(data)
     
@@ -38,8 +67,6 @@ class TransactionView(APIView):
         obj = TransactionResponse.objects.all()
         serializer = TransactionResponseSerializer(obj, many=True)
         return Response(serializer.data)
-
-    
 
 
 
