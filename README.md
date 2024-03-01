@@ -1,3 +1,5 @@
-# Lannister_Pay
-### A Flutterwave assigned task to create a transaction payment splitting service (TPSS)
-The service is meant to calculate the amount due to one or more split payment "entities" as well as the amount left after all splits have been computed.
+# LannisterPay(TPSS)
+## A REST API built with Django rest framework to create a Transaction Payment Splitting Service (TPSS) - (A Flutterwave assigned task)
+### This service calculates the amount deducted from one or more split payment entities and returns a breakdown of each split, and the balance after all splits have been calculated.
+
+### Link to original task: https://flutterwave.stoplight.io/docs/2022-tech-heroes/51d6f08ecdada-lannister-pay-tpss
